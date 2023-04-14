@@ -1,15 +1,20 @@
 package com.ecommerce.ecommerce.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ConstructorResult;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+import java.util.List;
+
+@Entity
+@ToString @AllArgsConstructor
+@Table(name = "usuarios")
 public class usuarios {
 
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Getter
     @Setter
@@ -35,6 +40,16 @@ public class usuarios {
     @Getter @Setter
     @Column(name = "tipo")
     private String tipo;
+
+    @Getter @Setter
+    @OneToMany(mappedBy = "usuarios")
+    private List<productos> productos;
+    @Getter @Setter
+    @OneToMany(mappedBy = "usuarios")
+    private List<orden> orden;
+
+
+
 
 
 
