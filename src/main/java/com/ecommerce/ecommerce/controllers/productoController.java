@@ -11,4 +11,9 @@ public class productoController {
     public String show(){
         return "administrador/productos/show";
     }
+
+    @GetMapping("/create")
+    public String create(){
+        return "administrador/productos/create";
+    }
 }
