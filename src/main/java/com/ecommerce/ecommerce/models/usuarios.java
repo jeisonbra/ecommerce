@@ -41,11 +41,13 @@ public class usuarios {
     @Column(name = "tipo")
     private String tipo;
 
+
+
     @Getter @Setter
     @OneToMany(mappedBy = "usuarios")
     private List<productos> productos;
     @Getter @Setter
-    @OneToMany(mappedBy = "usuarios")
+    @OneToMany(mappedBy = "usuarios") //anotacion de uno a muchos
     private List<orden> orden;
 
 

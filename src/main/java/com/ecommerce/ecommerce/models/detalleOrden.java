@@ -32,9 +32,9 @@ public class detalleOrden {
     private String total1;
 
     @Getter @Setter
-    @OneToOne
+    @OneToOne //anotacion de uno a uno
     private orden orden;
     @Getter @Setter
-    @OneToOne()
+    @ManyToOne()
     private productos productos;
 }
