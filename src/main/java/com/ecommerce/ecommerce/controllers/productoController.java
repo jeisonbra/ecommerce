@@ -2,18 +2,15 @@ package com.ecommerce.ecommerce.controllers;
 
 import com.ecommerce.ecommerce.models.productos;
 import com.ecommerce.ecommerce.models.usuarios;
-import com.ecommerce.ecommerce.services.productoServiceImpl;
 import org.slf4j.*;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.ecommerce.ecommerce.services.productoService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.function.Supplier;
-import java.util.logging.*;
 
 @Controller
 @RequestMapping("/productos")
@@ -25,8 +22,17 @@ public class productoController {
     @Autowired
     private productoService productoService;
 
+
+    /**
+     *
+     * @param model se usa para poder mostrar
+     *              los datos en la vista
+     *
+     */
+
     @GetMapping("")
-    public String show(){
+    public String show(Model model){
+        model.addAttribute("productos",productoService.findAll());
         return "administrador/productos/show";
     }
 

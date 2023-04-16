@@ -14,7 +14,9 @@ import java.util.List;
 @Table(name = "usuarios")
 public class usuarios {
 
+    public usuarios(){
 
+    }
     public usuarios(long id, String nombres, String apellidos, String direccion, String telefono, String usuario, String password, String tipo) {
         this.id = id;
         this.nombres = nombres;

@@ -2,6 +2,7 @@ package com.ecommerce.ecommerce.services;
 
 import com.ecommerce.ecommerce.models.productos;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -16,4 +17,5 @@ public interface productoService {
 
     public void update(productos productos);
     public void delete(Integer id);
+    public List<productos> findAll();
 }
