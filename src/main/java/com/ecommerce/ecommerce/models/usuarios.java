@@ -6,12 +6,25 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.beans.ConstructorProperties;
 import java.util.List;
 
 @Entity
-@ToString @AllArgsConstructor
+@ToString
 @Table(name = "usuarios")
 public class usuarios {
+
+
+    public usuarios(long id, String nombres, String apellidos, String direccion, String telefono, String usuario, String password, String tipo) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.usuario = usuario;
+        this.password = password;
+        this.tipo = tipo;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

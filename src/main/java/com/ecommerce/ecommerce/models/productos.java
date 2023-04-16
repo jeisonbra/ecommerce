@@ -10,8 +10,20 @@ import java.util.List;
 
 @Entity //Anotacion que especifica a esta clase como entidad
 @Table(name = "productos") // entidad que asigna un nombre a la tabla
-@AllArgsConstructor @ToString //anotaciones de lombok para creat los metodos contructor y ToString
+@ToString //anotaciones de lombok para creat los metodos contructor y ToString
 public class productos {
+    public productos() {
+    }
+
+    public productos(long id, String nombre, String descripcion, String imagen, String precio, String cantidad, com.ecommerce.ecommerce.models.usuarios usuarios) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.usuarios = usuarios;
+    }
 
     @Id //anotacion que especifica que este atributo es la llave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY) //anotacion que especifica que la llave primaria será autoincrementable
