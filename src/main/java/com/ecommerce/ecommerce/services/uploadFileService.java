@@ -16,7 +16,6 @@ public class uploadFileService {
 
     String folder = "images://";
 
-
     public String saveImage(MultipartFile file) throws IOException {
 
         if(!file.isEmpty()){
