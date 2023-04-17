@@ -2,6 +2,7 @@ package com.ecommerce.ecommerce.controllers;
 
 import com.ecommerce.ecommerce.models.productos;
 import com.ecommerce.ecommerce.models.usuarios;
+import com.ecommerce.ecommerce.services.uploadFileService;
 import org.slf4j.*;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,10 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import com.ecommerce.ecommerce.services.productoService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +25,9 @@ public class productoController {
 
     @Autowired
     private productoService productoService;
+
+    @Autowired
+    private uploadFileService uploadFileService;
 
 
     /**
@@ -46,9 +49,26 @@ public class productoController {
     }
 
     @PostMapping("/save")
-    public String save(productos producto){
+    public String save(productos producto,@RequestParam MultipartFile file) throws IOException {
         usuarios u= new usuarios(1,"","","","","","","");
         producto.setUsuarios(u);
+        //imagen
+
+        if(producto.getId() == null){ //opcion si na variable file no es vacia
+            String nombreImagen = uploadFileService.saveImage(file);
+            producto.setImagen(nombreImagen);
+        }else{
+            if(file.isEmpty()){//editamos el producto pero no cambiamos la imagen
+                productos p=new productos();
+                p = productoService.get(p.getId()).get();
+                producto.setImagen(p.getImagen());
+            }else{
+                String nombreImagen = uploadFileService.saveImage(file);
+                producto.setImagen(nombreImagen);
+            }
+        }
+
+
         productoService.save(producto);
         return "redirect:/productos";
     }
@@ -73,5 +93,7 @@ public class productoController {
         productoService.delete(id);
         return "redirect:/productos";
         }
+
+
 
 }

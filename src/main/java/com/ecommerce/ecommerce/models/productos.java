@@ -15,7 +15,7 @@ public class productos {
     public productos() {
     }
 
-    public productos(long id, String nombre, String descripcion, String imagen, String precio, String cantidad, com.ecommerce.ecommerce.models.usuarios usuarios) {
+    public productos(Integer id, String nombre, String descripcion, String imagen, String precio, String cantidad, com.ecommerce.ecommerce.models.usuarios usuarios) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -29,7 +29,7 @@ public class productos {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //anotacion que especifica que la llave primaria será autoincrementable
     @Column(name = "id") //anotacion para especificar el nombre de la columna
     @Getter @Setter
-    private long id;
+    private Integer id;
     @Column(name = "nombre")
     @Getter @Setter //anotacion de lombok para crear metodos Setter y Getter
     private String nombre;
