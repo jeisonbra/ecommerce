@@ -14,7 +14,6 @@ public interface productoService {
 
     public productos save(productos productos);
     public Optional<productos> get(Integer id);
-
     public void update(productos productos);
     public void delete(Integer id);
     public List<productos> findAll();
